@@ -3,14 +3,14 @@
 
 using namespace std;
 
-class Neko {
-  private:
-    string name;
-  public:
+class Neko
+{
+  string name;
+public:
     Neko(string s) {
       name = s;
     }
-    void naku() {
+    void naku() const {
       cout << "Meow. I'm " << name << "." << endl;
     }
 };
