@@ -6,3 +6,7 @@ function solution(N) {
     }
   }
 }
+// better solution
+// function solution(N) {
+//   return N.reduce((a, b) => a ^ b)
+// }
