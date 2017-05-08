@@ -3,7 +3,7 @@ function solution(N) {
   let sum = n * (n + 1) / 2
 
   let arraySum = N.reduce((sum, num) => {
-    sum + num
+    return sum + num
   }, 0)
 
   return sum - arraySum
