@@ -12,6 +12,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "classnames": "^2.2.5",
     "date-fns": "^1.28.5",
+    "dotenv": "^4.0.0",
     "graphql-tag": "^2.2.1",
     "history": "^4.6.1",
     "react": "^15.5.4",

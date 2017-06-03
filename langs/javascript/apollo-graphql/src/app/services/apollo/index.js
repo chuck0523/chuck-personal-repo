@@ -14,7 +14,7 @@ networkInterface.use([{
       req.options.headers = {}  // Create the header object if needed.
     }
     // get the authentication token from local storage if it exists
-    req.options.headers.authorization = `Bearer ${localStorage.getItem('token') || null}`
+    req.options.headers.authorization = `Bearer ${process.env.GITHUB_API_KEY}`
     next()
   }
 }])

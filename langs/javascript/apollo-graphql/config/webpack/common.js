@@ -41,7 +41,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('dev')
+        'NODE_ENV': JSON.stringify('dev'),
+        'GITHUB_API_KEY': JSON.stringify(process.env.GITHUB_API_KEY),
       }
     })
   ]
