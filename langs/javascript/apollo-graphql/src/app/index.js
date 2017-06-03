@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import injectTpEventPlugin  from 'react-tap-event-plugin'
+import { Routes } from './routes/Routes'
 
-import { AppContainer } from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader'
 // AppContainer is a necessary wrapper component for HMR
-
-import App from './components/App';
 
 const render = (Component) => {
   ReactDOM.render(
@@ -12,14 +12,16 @@ const render = (Component) => {
       <Component/>
     </AppContainer>,
     document.getElementById('root')
-  );
-};
+  )
+}
 
-render(App);
+injectTpEventPlugin()
+
+render(Routes)
 
 // Hot Module Replacement API
-if (module.hot) {
+if(module.hot) {
   module.hot.accept('./components/App', () => {
-    render(App)
-  });
+    render(Routes)
+  })
 }
