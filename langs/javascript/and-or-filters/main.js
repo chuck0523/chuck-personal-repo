@@ -1,8 +1,7 @@
 const { promisify } = require('util')
 const request = promisify(require('request'))
-const { isUndefined } = require('lodash')
 
-// Possible to be dynamic state by Redux or something
+// Can be dynamic state by Redux or something
 const state = {
   andOr: 'and',
   columns: [
@@ -50,6 +49,8 @@ const matchers = {
   'any': () => true, // default
   'contains': (a, b) => a.includes(b),
   'equals': (a, b) => a === b,
+  'greater than': (a, b) => a > b,
+  'less than': (a, b) => a < b,
 }
 const pickMatcher = (type = 'any') => {
   return matchers[type]
@@ -66,8 +67,8 @@ const typesState = filtersState.map(fs => fs.map(f => f.type))
 const textsState = filtersState.map(fs => fs.map(f => f.text))
 
 // Create functions
-const andOrForColumn = AndOr[state.andOr]
-const andOrsForCell = andOrsState.map(andOr => AndOr[andOr])
+const rowFilter = AndOr[state.andOr]
+const cellFilters = andOrsState.map(andOr => AndOr[andOr])
 const matchersArray = typesState.map(types => types.map(pickMatcher))
 
 // AND or OR search for data
@@ -75,12 +76,12 @@ const callFilters = (data) => {
   // Target: row
   return data.filter(row => {
     // Target: cell
-    return andOrForColumn.call(matchersArray, (matchers, columnIndex) => {
+    return rowFilter.call(matchersArray, (matchers, columnIndex) => {
       const cell = row[columnIndex]
-      const andOrForCell = andOrsForCell[columnIndex]
+      const cellFilter = cellFilters[columnIndex]
 
       // apply multiple matchers for cell
-      return andOrForCell.call(matchers, (matcher, matcherIdex) => {
+      return cellFilter.call(matchers, (matcher, matcherIdex) => {
         const text = textsState[columnIndex][matcherIdex]
         // skip when no filter
         if(text === '') {
