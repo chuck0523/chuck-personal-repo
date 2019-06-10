@@ -65,3 +65,18 @@ fmt.Println(s) // [1 2 3 4]
 `sort.Float64s, sort.Strings` などもある。
 
 https://yourbasic.org/golang/how-to-sort-in-go/
+
+
+### Ternary in Golang
+
+golang ではデフォルトで ternary expression が存在しない
+短く書くなら以下のとおり。
+
+```golang
+num := 0
+if someBool {
+  num := 1
+}
+```
+
+https://stackoverflow.com/questions/26545883/how-to-do-one-liner-if-else-statement/26546039
